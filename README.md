@@ -4,7 +4,7 @@
 
 # CSS Grid Generator
 
-### Site: [https://cssgrid-generator.netlify.com/](https://cssgrid-generator.netlify.com/)
+### Site: [https://cssgrid-generator.netlify.app/](https://cssgrid-generator.netlify.app/)
 
 ![CSS Grid Generator](https://s3-us-west-2.amazonaws.com/s.cdpn.io/28963/og-cssgrid.jpg)
 
