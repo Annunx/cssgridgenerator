@@ -1,14 +1,10 @@
-import Vue from "vue";
+import "./assets/fonts/font.css";
+import {createApp} from 'vue'
 import App from "./App.vue";
 import store from "./store";
-import { createI18n } from './i18n'
+import i18n from './i18n'
 
-Vue.config.productionTip = false;
-
-const i18n = createI18n()
-
-new Vue({
-  store,
-  i18n,
-  render: h => h(App)
-}).$mount("#app");
+const app = createApp(App)
+app.use(store)
+app.use(i18n)
+app.mount('#app')

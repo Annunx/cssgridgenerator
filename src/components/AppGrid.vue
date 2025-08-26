@@ -1,29 +1,29 @@
 <template>
   <main>
     <section
-      :style="{ gridTemplateColumns: colTemplate, gridTemplateRows: '50px', gridColumnGap: columngap + 'px', gridRowGap: rowgap + 'px' }"
-      class="colunits"
+        :style="{ gridTemplateColumns: colTemplate, gridTemplateRows: '50px', gridColumnGap: columngap + 'px', gridRowGap: rowgap + 'px' }"
+        class="colunits"
     >
       <div v-for="(col, i) in colArr" :key="i">
         <input
-          v-model.lazy="col.unit"
-          @change="validateunit($event, i, 'col')"
-          :class="[columns > 8 ? widthfull : '']"
-          aria-label="Grid Template Column Measurements"
+            v-model.lazy="col.unit"
+            @change="validateunit($event, i, 'col')"
+            :class="[columns > 8 ? widthfull : '']"
+            aria-label="Grid Template Column Measurements"
         >
         <div class="errors" v-if="errors.col.indexOf(i) !== -1">{{ $t("grid.realcssunit") }}</div>
       </div>
     </section>
 
     <section
-      :style="{ gridTemplateColumns: '50px', gridTemplateRows: rowTemplate, gridColumnGap: columngap + 'px', gridRowGap: rowgap + 'px' }"
-      class="rowunits"
+        :style="{ gridTemplateColumns: '50px', gridTemplateRows: rowTemplate, gridColumnGap: columngap + 'px', gridRowGap: rowgap + 'px' }"
+        class="rowunits"
     >
       <div v-for="(row, i) in rowArr" :key="i">
         <input
-          v-model.lazy="row.unit"
-          @change="validateunit($event, i, 'row')"
-          aria-label="Grid Template Row Measurements"
+            v-model.lazy="row.unit"
+            @change="validateunit($event, i, 'row')"
+            aria-label="Grid Template Row Measurements"
         >
         <div class="errors" v-if="errors.row.indexOf(i) !== -1">{{ $t("grid.realcssunit") }}</div>
       </div>
@@ -31,30 +31,30 @@
 
     <div id="gridcontainer">
       <section
-        class="grid"
-        :style="{ gridTemplateColumns: colTemplate, gridTemplateRows: rowTemplate , gridColumnGap: columngap + 'px', gridRowGap: rowgap + 'px' }"
-        @touchstart.prevent="delegatedTouchPlaceChild"
-        @touchend.prevent="delegatedTouchPlaceChild"
+          class="grid"
+          :style="{ gridTemplateColumns: colTemplate, gridTemplateRows: rowTemplate , gridColumnGap: columngap + 'px', gridRowGap: rowgap + 'px' }"
+          @touchstart.prevent="delegatedTouchPlaceChild"
+          @touchend.prevent="delegatedTouchPlaceChild"
       >
         <div
-          v-for="(item, i) in divNum"
-          :key="i"
-          :class="'box' + i"
-          :data-id="item"
-          @mousedown="placeChild(item, 's')"
-          @mouseup="placeChild(item, 'e')"
+            v-for="(item, i) in divNum"
+            :key="i"
+            :class="'box' + i"
+            :data-id="item"
+            @mousedown="placeChild(item, 's')"
+            @mouseup="placeChild(item, 'e')"
         ></div>
       </section>
 
       <section
-        class="grid gridchild"
-        :style="{ gridTemplateColumns: colTemplate, gridTemplateRows: rowTemplate , gridColumnGap: columngap + 'px', gridRowGap: rowgap + 'px' }"
+          class="grid gridchild"
+          :style="{ gridTemplateColumns: colTemplate, gridTemplateRows: rowTemplate , gridColumnGap: columngap + 'px', gridRowGap: rowgap + 'px' }"
       >
         <div
-          v-for="(child, i) in childarea"
-          :key="child"
-          :class="'child' + i"
-          :style="{ gridArea: child }"
+            v-for="(child, i) in childarea"
+            :key="child"
+            :class="'child' + i"
+            :style="{ gridArea: child }"
         >
           <button @click="removeChild(i)">&times;</button>
         </div>
@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from "vuex";
+import {mapGetters, mapState} from "vuex";
 
 export default {
   data() {
@@ -94,25 +94,25 @@ export default {
     validateunit(e, i, direction) {
       let unit = e.target.value;
       let check =
-        /fr$/.test(unit) ||
-        /px$/.test(unit) ||
-        /%$/.test(unit) ||
-        /em$/.test(unit) ||
-        /rem$/.test(unit) ||
-        /vw$/.test(unit) ||
-        /vh$/.test(unit) ||
-        /vmin$/.test(unit) ||
-        /q$/.test(unit) ||
-        /mm$/.test(unit) ||
-        /cm$/.test(unit) ||
-        /in$/.test(unit) ||
-        /pt$/.test(unit) ||
-        /pc$/.test(unit) ||
-        /ex$/.test(unit) ||
-        /ch$/.test(unit) ||
-        /minmax/.test(unit) ||
-        ["auto", "min-content", "max-content"].includes(unit) ||
-        parseInt(unit, 10) === 0; // allow 0 as a valid value without a unit
+          /fr$/.test(unit) ||
+          /px$/.test(unit) ||
+          /%$/.test(unit) ||
+          /em$/.test(unit) ||
+          /rem$/.test(unit) ||
+          /vw$/.test(unit) ||
+          /vh$/.test(unit) ||
+          /vmin$/.test(unit) ||
+          /q$/.test(unit) ||
+          /mm$/.test(unit) ||
+          /cm$/.test(unit) ||
+          /in$/.test(unit) ||
+          /pt$/.test(unit) ||
+          /pc$/.test(unit) ||
+          /ex$/.test(unit) ||
+          /ch$/.test(unit) ||
+          /minmax/.test(unit) ||
+          ["auto", "min-content", "max-content"].includes(unit) ||
+          parseInt(unit, 10) === 0; // allow 0 as a valid value without a unit
 
       if (!check) {
         this.errors[direction].push(i);
@@ -122,8 +122,8 @@ export default {
     },
     delegatedTouchPlaceChild(ev) {
       const target = document.elementFromPoint(
-        ev.changedTouches[0].clientX,
-        ev.changedTouches[0].clientY
+          ev.changedTouches[0].clientX,
+          ev.changedTouches[0].clientY
       );
       const startend = ev.type === "touchstart" ? "s" : "e";
       this.placeChild(target.dataset.id, startend);
@@ -132,22 +132,22 @@ export default {
       //built an object first because I might use this for something else
       this.child[`${startend}row`] = Math.ceil(item / this.columns);
       this.child[`${startend}col`] =
-        item - (this.child[`${startend}row`] - 1) * this.columns;
+          item - (this.child[`${startend}row`] - 1) * this.columns;
 
       //create the children css units as a string
       if (startend === "e") {
         // flip starts and ends if dragged in the opposite direction
         let [startRow, endRow] =
-          this.child.srow <= this.child.erow
-            ? [this.child.srow, this.child.erow]
-            : [this.child.erow, this.child.srow];
+            this.child.srow <= this.child.erow
+                ? [this.child.srow, this.child.erow]
+                : [this.child.erow, this.child.srow];
         let [startCol, endCol] =
-          this.child.scol <= this.child.ecol
-            ? [this.child.scol, this.child.ecol]
-            : [this.child.ecol, this.child.scol];
+            this.child.scol <= this.child.ecol
+                ? [this.child.scol, this.child.ecol]
+                : [this.child.ecol, this.child.scol];
 
         let childstring = `${startRow} / ${startCol} / ${endRow +
-          1} / ${endCol + 1}`;
+        1} / ${endCol + 1}`;
 
         this.$store.commit("addChildren", childstring);
       }
@@ -166,8 +166,8 @@ main {
   margin: 15px 0 0 75px;
 }
 
-@mixin colors($max, $color-frequency) {
-  $color: 300 / $max;
+@mixin colors($max: 20, $color-frequency: 100) {
+  $color: calc(300 / $max);
 
   // fruit loops!
   @for $i from 1 through $max {
@@ -180,9 +180,11 @@ main {
 
 .gridchild {
   counter-reset: step;
+
   div {
     counter-increment: step;
     position: relative;
+
     &:before {
       position: absolute;
       content: ".div" counter(step);
@@ -191,6 +193,7 @@ main {
       text-align: center;
       color: white;
     }
+
     button {
       position: absolute;
       right: 0;
@@ -212,21 +215,21 @@ main {
   position: relative;
   background: #131321; /* Old browsers */
   background: -moz-linear-gradient(
-    top,
-    #131321 0%,
-    #1f1c2c 100%
+          top,
+          #131321 0%,
+          #1f1c2c 100%
   ); /* FF3.6-15 */
   background: -webkit-linear-gradient(
-    top,
-    #131321 0%,
-    #1f1c2c 100%
+          top,
+          #131321 0%,
+          #1f1c2c 100%
   ); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(
-    to bottom,
-    #131321 0%,
-    #1f1c2c 100%
+          to bottom,
+          #131321 0%,
+          #1f1c2c 100%
   ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#131321', endColorstr='#1f1c2c',GradientType=0 ); /* IE6-9 */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#131321', endColorstr='#1f1c2c', GradientType=0); /* IE6-9 */
   box-shadow: 0 2px 20px 0 #000;
 }
 
@@ -237,6 +240,7 @@ main {
   display: grid;
   grid-auto-flow: row dense;
   @include colors(20, 100);
+
   p {
     padding: 0 10px;
   }
@@ -255,6 +259,7 @@ main {
 .rowunits,
 .colunits {
   display: grid;
+
   div {
     text-align: center;
     position: relative;
@@ -265,6 +270,7 @@ main {
   margin-left: -70px;
   float: left;
   height: 100%;
+
   div {
     align-self: center;
   }
